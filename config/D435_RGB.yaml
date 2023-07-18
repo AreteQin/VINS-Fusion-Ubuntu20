@@ -1,0 +1,18 @@
+%YAML:1.0
+---
+model_type: MEI
+camera_name: D435_RGB
+image_width: 640
+image_height: 480
+mirror_parameters:
+  xi: 3.6313355285286337e+00
+distortion_parameters:
+  k1: 0
+  k2: 0
+  p1: 0
+  p2: 0
+projection_parameters:
+  gamma1: 2.1387619122017772e+03
+  gamma2: 2.1315886210259278e+03
+  u0: 322.553
+  v0: 242.127
