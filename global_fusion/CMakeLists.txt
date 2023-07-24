@@ -12,7 +12,10 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
-find_package(Ceres REQUIRED)
+#find_package(Ceres REQUIRED)
+add_subdirectory(${CMAKE_SOURCE_DIR}/ThirdParty/ceres-solver)
+include_directories(${CMAKE_SOURCE_DIR}/ThirdParty/ceres-solver/include)
+set(CERES_LIBRARIES ceres)
 
 add_subdirectory(./ThirdParty/GeographicLib/)
 

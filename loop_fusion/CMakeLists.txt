@@ -18,7 +18,10 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(OpenCV)
 
 
-find_package(Ceres REQUIRED)
+#find_package(Ceres REQUIRED)
+add_subdirectory(${CMAKE_SOURCE_DIR}/ThirdParty/ceres-solver)
+include_directories(${CMAKE_SOURCE_DIR}/ThirdParty/ceres-solver/include)
+set(CERES_LIBRARIES ceres)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 find_package(Eigen3)
