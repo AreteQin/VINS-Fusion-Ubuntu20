@@ -6,7 +6,7 @@ imu: 1
 num_of_cam: 1  
 
 imu_topic: "/qcar_imu/raw"
-image0_topic: "/D435/color"
+image0_topic: "/camera/color/image_raw"
 output_path: "~/output/"
 
 cam0_calib: "D435_RGB.yaml"
@@ -17,15 +17,24 @@ image_height: 480
 # Extrinsic parameter between IMU and Camera.
 estimate_extrinsic: 0   # 0  Have an accurate extrinsic parameters. We will trust the following imu^R_cam, imu^T_cam, don't change it.
                         # 1  Have an initial guess about extrinsic parameters. We will optimize around your initial guess.
+                        # 2  Not provided
 
 body_T_cam0: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [-0.01730286 -0.99985029  0.00002995  0.01625795,
-          -0.01499097  0.00022947 -0.9998876   0.07340307,
-          0.99973791 -0.01730136 -0.01499269  0.05160523,
-           0, 0, 0, 1]
+   data: [-0.017302856630442093, -0.9998502939217044, 2.9951790496418607e-05, 0.016257952480735038,
+          -0.014990967984468917, 0.00022947249921589918, -0.9998876027940654, 0.07340306894066971,
+          0.9997379066692016, -0.017301360844034552, -0.014992694275196644, 0.05160523297796331,
+          0.0, 0.0, 0.0, 1.0]
+#   data: [-0.01730286, -0.99985029, 0.00002995, 0.01625795,
+#          -0.01499097, 0.00022947, -0.9998876, 0.07340307,
+#          0.99973791, -0.01730136, -0.01499269, 0.05160523,
+#           0, 0, 0, 1]
+#   data: [-0.01730286, -0.01499097,  0.99973791, -0.05021002,
+#          -0.99985029,  0.00022947, -0.01730136,  0.01713152,
+#           0.00002995, -0.9998876,  -0.01499269,  0.07416803,
+#           0,          0,          0,          1        ]
 
 #Multiple thread support
 multiple_thread: 1
@@ -44,15 +53,15 @@ max_num_iterations: 8   # max solver itrations, to guarantee real time
 keyframe_parallax: 10.0 # keyframe selection threshold (pixel)
 
 #imu parameters       The more accurate parameters you provide, the better performance
-acc_n: 0.0009221746732053619           # accelerometer measurement noise standard deviation.
-gyr_n: 0.0009221746796214183         # gyroscope measurement noise standard deviation.
+acc_n: 0.046108733660268096   #0.0009221746732053619   # accelerometer measurement noise standard deviation.
+gyr_n: 0.04610873398107091    #0.0009221746796214183   # gyroscope measurement noise standard deviation.
 acc_w: 4.389173826627885e-06        # accelerometer bias random work noise standard deviation.
 gyr_w: 4.3891738326059456e-06      # gyroscope bias random work noise standard deviation.
 g_norm: 9.8065     # gravity magnitude
 
 #unsynchronization parameters
-estimate_td: 0                      # online estimate time offset between camera and imu
-td: 0.0                             # initial value of time offset. unit: s. readed image clock + td = real image clock (IMU clock)
+estimate_td: 1                    # online estimate time offset between camera and imu
+td: -0.034150592311440485         # initial value of time offset. unit: s. readed image clock + td = real image clock (IMU clock)
 
 #loop closure parameters
 load_previous_pose_graph: 0        # load and reuse previous pose graph; load from 'pose_graph_save_path'
