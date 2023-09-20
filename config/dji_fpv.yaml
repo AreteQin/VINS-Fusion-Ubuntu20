@@ -1,0 +1,16 @@
+%YAML:1.0
+---
+model_type: PINHOLE
+camera_name: DJI_FPV
+image_width: 640
+image_height: 480
+distortion_parameters:
+  k1: -0.11950570872907
+  k2: -0.0111663839605156
+  p1: 0.00861364285129652
+  p2: 0
+projection_parameters:
+  fx: 547.16515410097
+  fy: 544.955124489509
+  cx: 636.887072025498
+  cy: 478.48434775792
